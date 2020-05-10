@@ -3,16 +3,12 @@ defmodule Payway do
   Documentation for `Payway`.
   """
 
-  @doc """
-  Hello world.
+  alias Payway.Gateways.ConektaAPI
 
-  ## Examples
-
-      iex> Payway.hello()
-      :world
-
-  """
-  def hello do
-    :world
+  def request("conekta", action, data) do
+    ConektaAPI.request(action, data)
+  end
+  def request(source, _event, _data) do
+    {:error, "#{source} is not supported"}
   end
 end
