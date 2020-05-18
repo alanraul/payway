@@ -8,7 +8,13 @@ defmodule Payway do
   def request("conekta", action, data) do
     ConektaAPI.request(action, data)
   end
+  def request("conekta", action, data, metadata) do
+    ConektaAPI.request(action, data, metadata)
+  end
   def request(source, _event, _data) do
+    {:error, "#{source} is not supported"}
+  end
+  def request(source, _event, _data, _metadata) do
     {:error, "#{source} is not supported"}
   end
 end

@@ -11,10 +11,6 @@ defmodule Payway.Helpers.ResponseHelper do
     _handle_error(error)
   end
 
-  defp _handle_error(%{"error" => error}) do
-    {:error, error}
-  end
-  defp _handle_error(error) do
-    {:error, error["details"]}
-  end
+  defp _handle_error(%{"error" => error}), do: {:error, error}
+  defp _handle_error(error), do: {:error, error["details"]}
 end

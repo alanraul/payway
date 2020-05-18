@@ -2,17 +2,22 @@ defmodule Payway.Gateways.ConektaAPI do
   @moduledoc false
   # Módulo base para hacer llamadas a Conekta API.
 
-  alias Payway.Helpers.{ApiHelper, ResponseHelper}
+  alias Payway.Helpers.{ApiHelper, ResponseHelper, ConektaOrderHelper}
 
   @host "https://api.conekta.io/"
 
+  def request("get_client", data) do
+    "#{@host}/customers/#{data}"
+    |> ApiHelper.get(_headers())
+    |> ResponseHelper.handle_response()
+  end
   def request("new_client", data) do
     "#{@host}/customers"
     |> ApiHelper.post(data, _headers())
     |> ResponseHelper.handle_response()
   end
-  def request("new_order", {client, data}) do
-    order = Map.put(data, :customer_info, %{customer_id: client["id"]})
+  def request("new_order", data, metadata) do
+    order = ConektaOrderHelper.set_order(data, metadata) |> IO.inspect
 
     "#{@host}/orders"
     |> ApiHelper.post(order, _headers())

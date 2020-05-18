@@ -34,4 +34,23 @@ defmodule Payway.Client do
       {:ok, client}
     end
   end
+
+  @doc """
+  Crea un cliente
+
+  ## Parameters
+
+    - source: nombre del servicio a utilizar
+    - data: mapa con data necesaria para crear un cliente
+
+  ## Examples
+
+    iex> Payway.Client.get("conekta", "cus_2ndkDk1vNVEJWcaH7")
+      {:ok, client_data}
+
+    iex> Payway.Client.get("conecta", %{})
+      {:error,}
+  """
+  def get(source, %{conekta_id: id}), do: Payway.request(source, "get_client", id)
+  def get(source, id), do: Payway.request(source, "get_client", id)
 end
