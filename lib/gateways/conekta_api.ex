@@ -6,8 +6,13 @@ defmodule Payway.Gateways.ConektaAPI do
 
   @host "https://api.conekta.io/"
 
-  def request("get_client", data) do
-    "#{@host}/customers/#{data}"
+  def request("get_client", id) do
+    "#{@host}/customers/#{id}"
+    |> ApiHelper.get(_headers())
+    |> ResponseHelper.handle_response()
+  end
+  def request("get_order", id) do
+    "#{@host}/orders/#{id}"
     |> ApiHelper.get(_headers())
     |> ResponseHelper.handle_response()
   end

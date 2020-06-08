@@ -22,4 +22,8 @@ defmodule Payway.Order do
   def create(source, data, metadata \\ nil) do
     Payway.request(source, "new_order", data, metadata)
   end
+
+  def get(source, id) do
+    Payway.request(source, "get_order", id)
+  end
 end
