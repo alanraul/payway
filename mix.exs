@@ -21,10 +21,10 @@ defmodule Payway.MixProject do
   # Run "mix help deps" to learn about dependencies.
   defp deps do
     [
-      {:httpoison, "~> 1.6"},
-      {:jason, "~> 1.2"},
-      {:ex_doc, "~> 0.21", only: :dev, runtime: false},
-      {:timex, "~> 3.5"},
+      {:httpoison,  "~> 1.6"},
+      {:jason,      "~> 1.2"},
+      {:ex_doc,     "~> 0.21", only: :dev, runtime: false},
+      {:timex,      "~> 3.5"},
     ]
   end
 end

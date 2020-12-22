@@ -1,4 +1,4 @@
-defmodule Payway.Client do
+defmodule Payway.Customer do
   @moduledoc """
   Modulo para manejar clientes
   """
@@ -13,7 +13,7 @@ defmodule Payway.Client do
 
   ## Examples
 
-    iex> Payway.Client.create("conekta", %{email: "fulanito@conekta.com", name: "Fulanito Pérez"})
+    iex> Payway.Customer.create("conekta", %{email: "kat@conekta.com", name: "Katherine"})
         {:ok, %{
           "corporate" => false,
           "created_at" => 1588323324,
@@ -30,7 +30,7 @@ defmodule Payway.Client do
 
   """
   def create(source, data) do
-    with {:ok, client} <- Payway.request(source, "new_client", data) do
+    with {:ok, client} <- Payway.request(source, "new_customer", data) do
       {:ok, client}
     end
   end
@@ -45,12 +45,12 @@ defmodule Payway.Client do
 
   ## Examples
 
-    iex> Payway.Client.get("conekta", "cus_2ndkDk1vNVEJWcaH7")
+    iex> Payway.Customer.get("conekta", "cus_2ndkDk1vNVEJWcaH7")
       {:ok, client_data}
 
-    iex> Payway.Client.get("conecta", %{})
+    iex> Payway.Customer.get("conecta", %{})
       {:error,}
   """
-  def get(source, %{conekta_id: id}), do: Payway.request(source, "get_client", id)
-  def get(source, id), do: Payway.request(source, "get_client", id)
+  def get(source, %{conekta_id: id}), do: Payway.request(source, "get_customer", id)
+  def get(source, id), do: Payway.request(source, "get_customer", id)
 end

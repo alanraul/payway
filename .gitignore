@@ -23,3 +23,5 @@ erl_crash.dump
 payway-*.tar
 
 .env
+
+.DS_Store
